@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/name: hello-world
+spec:
+  selector:
+    matchLabels:
+      run: hello-world
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: hello-world
+    spec:
+      containers:
+        - name: hello-world
+          image: 192.168.3.4:5000/hello-world:1.0
+          ports:
+            - containerPort: 8080
